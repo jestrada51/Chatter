@@ -1,0 +1,15 @@
+2:11AM 6-20-2025
+
+Note:
+    Set up the project boilerplate and other features in progress. 
+
+    ProtectedRoute object which will handle auth routing functionality for login and index
+    is in progress. <Outlet /> is to be researched. 
+
+    learn how you will be sending async requests from react.
+    Build scaffolding for API code.
+
+
+
+
+
