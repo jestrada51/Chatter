@@ -1,7 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './css/index.css'
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+
 import App from './App.jsx'
+
+import PageNotFound from './pages/PageNotFound.jsx'
 
 /*
 
@@ -19,8 +24,18 @@ import App from './App.jsx'
   App.js then finds the element '<App />' and then renders stuff there...
 
 */
+
+
+
+const router = createBrowserRouter([
+  {path: '/', element: <App />},
+  {path: '*', element: <PageNotFound />},
+
+]);
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
