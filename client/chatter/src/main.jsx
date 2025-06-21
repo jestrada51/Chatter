@@ -1,13 +1,18 @@
+import { useState } from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './css/index.css'
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
+import './css/style.css'
+
+
 import App from './App.jsx'
-
+import Login from './pages/login.jsx'
+//import About from './pages/About.jsx'
 import PageNotFound from './pages/PageNotFound.jsx'
+import ProtectedRoute from './components/protectedRoute.jsx'
 
+import { AuthProvider } from './contexts/AuthContext.jsx'
 /*
 
   NOTE:
@@ -28,14 +33,24 @@ import PageNotFound from './pages/PageNotFound.jsx'
 
 
 const router = createBrowserRouter([
-  {path: '/', element: <App />},
-  {path: '*', element: <PageNotFound />},
-
+  {path: '/', element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute> 
+  )},
+  {path: '/login', element: <Login />},
+  {path: '*', element: (
+    <ProtectedRoute>
+        <PageNotFound />
+    </ProtectedRoute>
+  )},
 ]);
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
